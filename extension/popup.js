@@ -1,5 +1,17 @@
 const testH2 = document.querySelector('#testH2');
 
+const mocked_data = [
+  {
+    text: 'chicken',
+  },
+  {
+    text: 'beef',
+  },
+  {
+    text: 'beef',
+  },
+];
+
 console.log('this is from popup.js');
 
 async function testApi() {
