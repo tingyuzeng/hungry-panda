@@ -12,6 +12,7 @@
 
 # Folder structure
 - Project proposal: [Proposal.pdf](Proposal.pdf)
+- Progress report: [Progress_Report.pdf](Progress_Report.pdf)
 
 # Install
 
