@@ -23,7 +23,6 @@ mocked_data = [{"text": "relevant"}, {"text": "irrelevant"}]
 
 @app.route("/analyse", methods=['POST'])
 @cross_origin()
-
 def analysea_text():
     data_file = open(r'C:\Users\75750\cs410\final_project\hungry-panda\backend\yelp_academic_dataset_review.json')
     data = []
