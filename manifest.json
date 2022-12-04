@@ -25,17 +25,10 @@
   "content_scripts": [
     {
       "matches": ["https://*.yelp.com/*"],
-      "css": ["extension/content.css"],
       "js": ["extension/content.js"]
     }
   ],
-  "permissions": [
-    "tabs",
-    "activeTab",
-    "background",
-    "storage",
-    "https://*.yelp.com/"
-  ],
+  "permissions": ["tabs", "activeTab", "background", "storage"],
   "short_name": "HP",
   "version_name": "appetizer"
 }
