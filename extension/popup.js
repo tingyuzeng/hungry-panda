@@ -1,66 +1,65 @@
+const finalScoreEl = document.getElementById('final-score');
+const dishesUlEl = document.getElementById('dish-frequency');
+const reviewsUlEl = document.getElementById('sentiment-scores');
+
+const popoverTriggerList = document.querySelectorAll(
+  '[data-bs-toggle="popover"]'
+);
+const popoverList = [...popoverTriggerList].map(
+  (popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl)
+);
+
 chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
   chrome.tabs.sendMessage(tabs[0].id, { hungryPanda: 'START' }, (res) => {
-    console.log(res.reviews);
+    fetchData(res.reviews);
   });
 });
 
-const testH2 = document.querySelector('#testH2');
+async function fetchData(reviews) {
+  return fetch('http://127.0.0.1:5000', {
+    method: 'POST',
+    body: JSON.stringify(reviews),
+    headers: { 'Content-Type': 'application/json' },
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      // Display final sentiment score
+      finalScoreEl.innerText = data['final_score'];
 
-const mocked_data = [
-  {
-    text: 'chicken',
-  },
-  {
-    text: 'beef',
-  },
-  {
-    text: 'beef',
-  },
-  {
-    text: 'pork',
-  },
-  {
-    text: 'fish',
-  },
-];
+      // Display sorted dish name + count
+      const sortedFood = data['sorted_food'];
+      sortedFood.forEach(([dishName, count]) => {
+        const li = document.createElement('li');
+        li.classList.add(
+          'list-group-item',
+          'd-flex',
+          'justify-content-between',
+          'align-items-start'
+        );
+        li.innerHTML = `<span>${dishName}</span><span class='badge bg-primary rounded-pill'>${count}</span>`;
+        dishesUlEl.appendChild(li);
+      });
 
-/**
- *
- * @param {Array} arr
- */
-function sortList(arr) {
-  const counter = new Map();
-  arr.forEach((item) => {
-    const count = (counter.get(item.text)?.count || 0) + 1;
-    counter.set(item.text, { count, item });
-  });
-  const mapArr = Array.from(counter.entries());
-  mapArr.sort((a, b) => b[1].count - a[1].count);
-  return mapArr.map((mappedItem) => mappedItem[1].item);
+      // Display review + sentiment score
+      const sentimentScores = data['sentiment_scores'];
+      sentimentScores.forEach(([reviewStr, sentimentScore], idx) => {
+        const div = document.createElement('div');
+        div.classList.add('carousel-item');
+        if (idx === 0) div.classList.add('active');
+        div.innerHTML = `
+          <div class="card mx-5">
+            <div class="card-body">
+              <h5 class="card-title">Sentimental score: ${sentimentScore}</h5>
+              <p class="card-text review-card fs-6">${reviewStr}</p>
+            </div>
+          </div>
+        `;
+        reviewsUlEl.appendChild(div);
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
-
-const ulElement = document.createElement('ul');
-const sortedMockedData = sortList(mocked_data);
-sortedMockedData.forEach((dish) => {
-  const li = document.createElement('li');
-  li.innerHTML = `<span>${dish.text}</span>`;
-  ulElement.appendChild(li);
-});
-document.body.appendChild(ulElement);
-
-// console.log('this is from popup.js');
-
-// async function testApi() {
-//   fetch('http://127.0.0.1:5000/')
-//     .then((res) => {
-//       return res.json();
-//     })
-//     .then((data) => {
-//       testH2.textContent = data.text;
-//     })
-//     .catch((err) => {
-//       console.error(err);
-//     });
-// }
-
-// testApi();

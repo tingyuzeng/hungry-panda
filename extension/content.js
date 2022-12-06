@@ -29,7 +29,7 @@ function getReviews() {
     let obj = {
       name: info[0].textContent,
       star: s,
-      review: dateil,
+      text: dateil,
       location: location,
     };
     arr.push(obj);
