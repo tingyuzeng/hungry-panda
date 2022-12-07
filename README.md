@@ -16,6 +16,13 @@
 
 # Install
 
+## Frontend
+
+1. Clone the repository, 
+2. Go to the Extensions page by entering chrome://extensions in a new tab. (By design chrome:// URLs are not linkable.)
+3. Enable Developer Mode by clicking the toggle switch next to Developer mode.
+4. Click the Load unpacked button and select the extension directory.
+
 ## Backend
 
 There are 2 ways of installing the current dependencies:
@@ -37,6 +44,11 @@ If you need to add a new dependency to the project, use the command: `pip instal
 - Make sure you installed all the dependencies.
 - Starting the development server can be done by running this command in your terminal: `flask --app backend/app run --reload`. Then you can use [Postman](https://www.postman.com/) to interact with the endpoints.
 - But you can also create an independent Python script that performs the desired action (say `nlp.py` under the `backend` folder), and develop further by running `python backend/nlp.py` in the root directory. In this way, you avoid the need of running the server during your development.
+
+# How to run
+
+1. Run the backend via `flask --app backend/app run --reload`.
+2. Go to a Yelp website in Chrome and click on the extension icon.
 
 # Course Project
 
