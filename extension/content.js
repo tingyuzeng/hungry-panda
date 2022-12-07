@@ -1,16 +1,25 @@
+let reviewSectionEl, reviewUlEl;
+
+window.addEventListener('load', getElements);
+
+function getElements(maxTimes = 5) {
+  if (reviewSectionEl && reviewUlEl) return;
+
+  let times = 0;
+  while ((!reviewSectionEl || !reviewUlEl) && times < maxTimes) {
+    reviewSectionEl = document.querySelector(
+      'section[aria-label="Recommended Reviews"]'
+    );
+    reviewUlEl = reviewSectionEl?.querySelector('ul:not([aria-label="Rating"]');
+    times++;
+  }
+}
+
 function getReviews() {
   let arr = [];
 
-  const reviewSectionEl = document.querySelector(
-    'section[aria-label="Recommended Reviews"]'
-  );
-
-  const reviewUlEl = reviewSectionEl.querySelector(
-    'ul:not([aria-label="Rating"]'
-  );
-
+  getElements();
   let list = reviewUlEl.childNodes;
-
   let len = reviewUlEl.childNodes.length;
 
   for (let i = 0; i < len; i++) {
