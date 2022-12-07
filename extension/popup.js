@@ -26,7 +26,7 @@ async function fetchData(reviews) {
     })
     .then((data) => {
       // Display final sentiment score
-      finalScoreEl.innerText = data['final_score'];
+      finalScoreEl.innerText = Number(data['final_score']).toFixed(1);
 
       // Display sorted dish name + count
       const sortedFood = data['sorted_food'];
