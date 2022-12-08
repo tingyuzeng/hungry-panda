@@ -2,17 +2,34 @@
 **Team name**: Hungry Panda
 
 **Team member**:
-| Name | netid |
-| ---- | ----- |
-| Tingyu Zeng | tzeng11 | 
-| Sicheng Meng | meng29 |
-| Yiwei Kuang | yiwei9 |
-| Jiachun Tang | jiachun5 |
-| Fangsheng Yang | fyang28 |
+| Name | Netid | Contribution |
+| ---- | ----- | ------------ |
+| Tingyu Zeng | tzeng11 | Architecture |
+| Sicheng Meng | meng29 | Extension: data crawling | 
+| Yiwei Kuang | yiwei9 | Backend: info retrieval and sentiment analysis |
+| Jiachun Tang | jiachun5 | Backend: info retrieval and sentiment analysis |
+| Fangsheng Yang | fyang28 | Extension: data presentation |
 
 # Folder structure
+
 - Project proposal: [Proposal.pdf](Proposal.pdf)
 - Progress report: [Progress_Report.pdf](Progress_Report.pdf)
+- Documentation: [Documentation.pdf](Documentation.pdf)
+
+# 🎥 Presentation video
+
+**The presentation video** can be accessed via [this link](https://youtu.be/mS6M2M5O2r8) (YouTube).
+
+# Overview
+
+When Yelp users rate a restaurant, they tend to give the rating based not only on taste and quality of the food, but also other factors such as service, prices, comfort, atmosphere, parking, and location, etc. 
+
+As a group of Chinese students, our favorite dim sum restaurants usually don’t have a high rating on Yelp, partly because traditional dim sum places focus on taste of food, but many of them don’t focus on service, known as “cantonese hospitality”. You have to read each review if you want to know how good the food is. 
+
+We don't want to let bad service overshadow good food. Through text retrieval and mining techniques, we think it would be a great idea to analyze reviews that focus on food only.
+
+With that interest, we created a Chrome-based extension to give an overview of what kind of food are frequently mentioned in the reviews and based on the review content what should be the sentimental score for this restaurant.
+
 
 # Install
 
@@ -49,6 +66,10 @@ If you need to add a new dependency to the project, use the command: `pip instal
 
 1. Run the backend via `flask --app backend/app run --reload`.
 2. Go to a Yelp website in Chrome and click on the extension icon.
+
+# Implementation Details
+
+See Documentation.pdf or code comments.
 
 # Course Project
 
